@@ -93,7 +93,6 @@ int main (){
 
 
 Program Python
-
 print('Nama : Nissa Albira')
 print('NIM  : 2310433017 ')
 print('========Selamat Dtang di Terminal Bus PT. ANS========')
@@ -139,10 +138,13 @@ else:
 
 if kelas == 1:
     hargakelas = 10000
+    print('Kelas : Ekonomi')
 elif kelas == 2:
     hargakelas = 20000
+    print('Kelas : Bisnis')
 elif kelas ==3:
     hargakelas = 30000
+    print('Kelas : Satu')
 else:
     print('Kelas tidak tersedia')
 
@@ -161,4 +163,14 @@ print('Diskon = Rp',(diskon))
 totalsetelahdiskon = total-diskon
 print('Total setelah diskon = Rp',(totalsetelahdiskon))
 print('*Terimakasih semoga perjalanan Anda menyenangkan*')
+
+
+
+
+
+
+
+
+
+
 
