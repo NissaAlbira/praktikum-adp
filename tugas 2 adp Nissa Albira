@@ -1,0 +1,164 @@
+Tugas 2 ADP
+
+Program C++
+#include <iostream>
+using namespace std;
+
+int main (){
+
+    int hargatujuan,hargakelas,jlhtiket,tujuan,kelas,total,totalsetelahdiskon;
+    float diskon;
+    cout<<"Nama : Nissa Albira ";
+    cout<<"\nNIM : 2310433017 ";
+    cout<<"\n=======Selamat Datang di Terminal Bus PT. ANS======="<<endl;
+    cout<<"===============Silahkan pilih tiket anda===============\n"<<endl;
+    cout<<"Bus PT. ANS Lintas Sumatera"<<endl;
+    cout<<"\n-------------Daftar Tujuan-------------\n"<<endl;
+    cout<<"Silahkan pilih tujuan anda :"<<endl;
+    cout<<"1. Medan   : Rp150.000"<<endl;
+    cout<<"2. Padang  : Rp50.000"<<endl;
+    cout<<"3. Lampung : Rp200.000"<<endl;
+    cout<<"4. Riau    : Rp110.000"<<endl;
+    cout<<"5. Jambi   : Rp140.000"<<endl;
+    cout<<"6. Aceh    : Rp250.000"<<endl;
+    cout<<"Tujuan yang anda pilih (1-6): ";
+    cin>>tujuan;
+
+    cout<<"\n---------Kelas (Biaya Tambahan)---------\n"<<endl;
+    cout<<"1. Ekonomi      : Rp10.000"<<endl;
+    cout<<"2. Bisnis Kelas : Rp20.000"<<endl;
+    cout<<"3. First Class  : Rp30.000"<<endl;
+    cout<<"Kelas yang anda pilih (1-3) : ";
+    cin>>kelas;
+
+    cout<<"Jumlah tiket : ";
+    cin>>jlhtiket;
+
+    cout<<"\n-----------Rincian Tiket Anda-----------\n";
+    if(tujuan == 1){
+        hargatujuan = 150000;
+        cout<<"\nTujuan : Medan"<<endl;
+    } else if(tujuan == 2){
+        hargatujuan = 50000;
+        cout<<"\nTujuan : Padang"<<endl;
+    }else if (tujuan == 3){
+        hargatujuan = 200000;
+        cout<<"\nTujuan : Lampung"<<endl;
+    }else if(tujuan == 4){
+        hargatujuan = 110000;
+        cout<<"\nTujuan : Riau"<<endl;
+    }else if(tujuan == 5){
+        hargatujuan = 140000;
+        cout<<"\nTujuan : Jambi"<<endl;
+    }else if(tujuan == 6){
+        hargatujuan = 250000;
+        cout<<"\nTujuan: Aceh"<<endl;
+    }else{
+        cout<<"Tujuan tidak tersedia"<<endl;
+    }
+
+
+    if(kelas == 1){
+        hargakelas = 10000;
+        cout<<"Kelas  : Ekonomi"<<endl;
+    }else if(kelas == 2){
+        hargakelas = 20000;
+        cout<<"Kelas  : Bisnis"<<endl;
+    }else if(kelas == 3){
+        hargakelas = 30000;
+        cout<<"Kelas  : Satu"<<endl;
+    }else {
+        cout<<"Kelas tidak tersedia"<<endl;
+    }
+
+
+    cout<<"Jumlah tiket : "<<jlhtiket<<endl;
+    total=(hargatujuan + hargakelas)*jlhtiket;
+    cout<<"Total  = Rp"<<total<<endl;
+
+    if(jlhtiket>=3 and jlhtiket<=5){
+        diskon=total*0.05;
+    }else if (jlhtiket > 5){
+        diskon=total*0.1;
+    }else {
+        cout<<"Maaf, anda tidak mendapatkan diskon"<<endl;
+    }
+
+    cout<<"Diskon = Rp"<<diskon<<endl;
+    totalsetelahdiskon = total-diskon;
+    cout<<"Total setelah diskon = Rp"<<totalsetelahdiskon<<endl;
+    cout<<"*Terimakasih semoga perjalanan Anda menyenangkan*"<<endl;
+
+}
+
+
+Program Python
+
+print('Nama : Nissa Albira')
+print('NIM  : 2310433017 ')
+print('========Selamat Dtang di Terminal Bus PT. ANS========')
+print('Bus PT. ANS Lintas Sumatera')
+print('--------------------Daftar Tujuan--------------------')
+print('Silahkan pilih tujuan anda :')
+print('1. Medan   : Rp150.000')
+print('2. Padang  : Rp50.000')
+print('3. Lampung : Rp200.000')
+print('4. Riau    : Rp110.000')
+print('5. Jambi   : Rp140.000')
+print('6. Aceh    : Rp250000')
+tujuan = int(input('Tujuan yang anda pilih (1-6) : '))
+print('---------------Kelas (Biaya Tambahan)---------------')
+print('1. Ekonomi      : Rp10.000')
+print('2. Bisnis Kelas : Rp20.000')
+print('3. First Class  : Rp30.000')
+kelas = int(input('Kelas yang anda pilih (1-3) : '))
+jlhtiket = int(input('Jumlah tiket : '))
+
+print('-----------------Rincian Tiket Anda-----------------')
+if tujuan == 1:
+    hargatujuan = 150000
+    print('Tujuan : Medan')
+elif tujuan == 2:
+    hargatujuan = 50000
+    print('Tujuan : Padang')
+elif tujuan == 3:
+    hargatujuan = 200000
+    print('Tujuan : Lampung')
+elif tujuan == 4:
+    hargatujuan = 110000
+    print('Tujuan : Riau')
+elif tujuan == 5:
+    hargatujuan = 140000
+    print('Tujuan : Jambi')
+elif tujuan == 6:
+    hargatujuan = 250000
+    print('Tujuan : Aceh')
+else: 
+    print('Tujuan tidak tersedia')
+
+
+if kelas == 1:
+    hargakelas = 10000
+elif kelas == 2:
+    hargakelas = 20000
+elif kelas ==3:
+    hargakelas = 30000
+else:
+    print('Kelas tidak tersedia')
+
+print('Jumlah Tiket : ',(jlhtiket))
+total = (hargatujuan + hargakelas )*jlhtiket
+print('Total = Rp',(total))
+
+if jlhtiket >=3 and jlhtiket<= 5:
+    diskon = total*0.05
+elif jlhtiket > 5:
+    diskon = total*0.1
+else :
+    print('Maaf, anda tidak mendapatkan diskon')
+
+print('Diskon = Rp',(diskon))
+totalsetelahdiskon = total-diskon
+print('Total setelah diskon = Rp',(totalsetelahdiskon))
+print('*Terimakasih semoga perjalanan Anda menyenangkan*')
+
