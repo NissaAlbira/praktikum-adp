@@ -1,0 +1,23 @@
+print("Nama : Nissa Albira")
+print("NIM  : 2310433017")
+
+while True:
+  n = int(input("Masukkan bilangan bulat positif n antara 3 hingga 199 (kecuali 100 hingga 109): "))
+  if 3 <= n <= 199 and (n < 100 or n > 109):
+    break
+
+fn1 = 1
+fn2 = 1
+fn = 0
+jumlah = fn1 + fn2
+for i in range (3 ,n + 1):
+    fn = fn1 + fn2
+    fn1 = fn2
+    fn2 = fn
+    jumlah += fn
+
+print(f"Bilangan Fibonacci ke- {n} adalah: {fn}")
+print(f"Jumlah Deret Fibonacci ke- {n} adalah : {jumlah}")
+
+
+
