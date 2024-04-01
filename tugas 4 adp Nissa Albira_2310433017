@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ctype.h>
 
 using namespace std;
 
@@ -10,26 +11,26 @@ int main() {
   cout<<"Berikut ini adalah program mengubah lirik lagu"<<endl;
   cout<<"----------------------------------------------\n";
 
-  string liriklagu[3];
+  string liriklagu;
 
-  cout << "\nMasukkan 3 baris lirik lagu favorit kamu: \n";
+  cout << "\nMasukkan lirik lagu favorit kamu (cukup 3 kalimat aja): \n";
+  getline(cin, liriklagu);
+
+  cout << "\nLirik lagu yang sudah diubah: \n";
+
   for (int i = 0; i < 3; i++) {
-    getline(cin, liriklagu[i]);
-  }
+    for (int j = 0; j < liriklagu.length(); j++) {
+            char huruf = liriklagu[j];
+    if (huruf == 'a' || huruf == 'i' || huruf == 'u' || huruf == 'e' || huruf == 'o' || huruf == 'A' || huruf == 'I' || huruf == 'U' || huruf == 'E' || huruf == 'O') {
+        liriklagu[i] == 'i';
+        liriklagu[j] = 'i';
 
-
-  for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < liriklagu[i].length(); j++) {
-      char huruf = liriklagu[i][j];
-      if (huruf == 'a' || huruf == 'i' || huruf == 'u' || huruf == 'e' || huruf == 'o' || huruf == 'A' || huruf == 'I' ||huruf == 'U' || huruf == 'E' || huruf == 'O'){
-        liriklagu[i][j] = 'i';
       }
     }
   }
-  cout << "\nLirik lagu setelah diubah: \n";
-  for (int i = 0; i < 3; i++) {
-      cout << liriklagu[i] << endl;
-  }
+
+  cout << liriklagu << endl;
 
   return 0;
+
 }
