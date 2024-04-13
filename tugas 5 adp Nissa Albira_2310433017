@@ -1,0 +1,195 @@
+1.) Bahasa Program C++
+
+
+#include <iostream>
+#include <cmath>
+#include <stdio.h>
+#include <iomanip>
+
+using namespace std;
+
+    double fungsiF(double x) {
+        if (x > 0) {
+            return 3*pow(x, 2) + 7*x - 2;
+        } else {
+            return 2*pow(x, 2) - 5*x - 4;
+        }
+    }
+
+    double fungsiG(double x) {
+        return pow(fungsiF(x), 2) - sqrt(fungsiF(x));
+    }
+
+    double fungsiH(double x) {
+        return fungsiF(x)*fungsiG(x);
+    }
+
+int main(){
+    int banyakdata;
+    float x[100], f[100], g[100], h[100];
+    cout<<"Nama : Nissa Albira"<<endl;
+    cout<<"NIM  : 2310433017\n"<<endl;
+    cout<<"\n======================================="<<endl;
+    cout<<"         PROGRAM TABEL FUNGSI"<<endl;
+    cout<<"======================================="<<endl;
+    cout<<"\nf(x) = 3x^2 + 7x - 2, jika x > 0"<<endl;
+    cout<<"     = 2x^2 - 5x - 4, jika x < 0"<<endl;
+    cout<<"g(x) = (f(x))^2 - (akar f(x))"<<endl;
+    cout<<"h(x) = f(x) * g(x)"<<endl;
+
+    cout<<"\nMasukkan Banyak Data : ";
+    cin>>banyakdata;
+    cout<<endl;
+
+    for(int i = 1 ; i <= banyakdata ; i++){
+        cout<<"Nilai x ke-"<< i <<" = ";
+        cin>>x[i];
+
+        f[i] = fungsiF(x[i]);
+        g[i] = fungsiG(x[i]);
+        h[i] = fungsiH(x[i]);
+    }
+
+    cout<<"\n\n                     Tabel Fungsi\n"<<endl;
+    cout<<"----------------------------------------------------------"<<endl;
+    cout<<"|  No.  |    x    |    f(x)    |    g(x)    |    h(x)    |"<<endl;
+    cout<<"=========================================================="<<endl;
+    for(int i = 1 ; i <= banyakdata ; i++){
+            cout<<"| "<<setiosflags(ios :: left)<<setw(6)<<i<<"|";
+            cout<<" "<<setiosflags(ios :: left)<<setw(8)<<x[i]<<"|";
+            cout<<" "<<setiosflags(ios :: left)<<setw(11)<<f[i]<<"|";
+            cout<<" "<<setiosflags(ios :: left)<<setw(11)<<g[i]<<"|";
+            cout<<" "<<setiosflags(ios :: left)<<setw(11)<<h[i]<<"|"<<endl;
+    }
+    cout<<"----------------------------------------------------------"<<endl;
+    char ulang;
+    cout<<"\nIngin input nilai x lagi? Y/N: ";
+    cin>>ulang;
+
+    while (ulang == 'Y' || ulang == 'y') {
+            cout<<"\nMasukkan Banyak Data : ";
+            cin>>banyakdata;
+            cout<<endl;
+            for(int i = 1 ; i <= banyakdata ; i++){
+                    cout<<"Nilai x ke-"<< i <<" = ";
+                    cin>>x[i];
+
+                    f[i] = fungsiF(x[i]);
+                    g[i] = fungsiG(x[i]);
+                    h[i] = fungsiH(x[i]);
+    }
+
+
+            cout<<"\n\nTabel Fungsi"<<endl;
+            cout<<"----------------------------------------------------------"<<endl;
+            cout<<"|  No.  |    x    |    f(x)    |    g(x)    |    h(x)    |"<<endl;
+            cout<<"=========================================================="<<endl;
+            for(int i = 1 ; i <= banyakdata ; i++){
+                cout<<"| "<<setiosflags(ios :: left)<<setw(6)<<i<<"|";
+                cout<<" "<<setiosflags(ios :: left)<<setw(8)<<x[i]<<"|";
+                cout<<" "<<setiosflags(ios :: left)<<setw(11)<<f[i]<<"|";
+                cout<<" "<<setiosflags(ios :: left)<<setw(11)<<g[i]<<"|";
+                cout<<" "<<setiosflags(ios :: left)<<setw(11)<<h[i]<<"|"<<endl;
+            }
+            cout<<"----------------------------------------------------------"<<endl;
+    }
+return 0;
+}
+
+
+
+
+
+
+
+
+2.) Bahasa Program Python
+
+import math
+
+def fungsiF(x):
+  if (x > 0):
+    return 3 * x**2 + 7 * x - 2
+  else :
+    return 2 * x**2 - 5 * x - 4
+
+def fungsiG(x):
+  return (fungsiF(x))**2 - math.sqrt(fungsiF(x))
+
+def fungsiH(x):
+  return fungsiF(x) * fungsiG(x)
+
+print("Nama: Nissa Albira")
+print("NIM: 2310433017\n")
+print("=====================================")
+print("      PROGRAM TABEL FUNGSI          ")
+print("=====================================")
+print("\nf(x) = 3x^2 + 7x - 2, jika x > 0")
+print("     = 2x^2 - 5x - 4, jika x <= 0")
+print("g(x) = (f(x))^2 - (akar f(x))")
+print("h(x) = f(x) * g(x)\n")
+
+banyakdata = int(input("Masukkan jumlah data: "))
+x = [0] * (banyakdata + 1)  
+f = [0] * (banyakdata + 1)
+g = [0] * (banyakdata + 1)
+h = [0] * (banyakdata + 1)
+
+for i in range (1, banyakdata + 1):
+  x[i] = float(input(f"Nilai x ke- {i} = "))
+
+  f[i] = fungsiF(x[i])
+  g[i] = fungsiG(x[i])
+  h[i] = fungsiH(x[i])
+
+print("\n\n                                Tabel Fungsi\n")
+print("--------------------------------------------------------------------------------")
+print("|  No.   |    x     |      f(x)     |         g(x)       |          h(x)       |")
+print("================================================================================")
+
+for i in range (1, banyakdata + 1):
+  print(f"| {i:<6} | {x[i]:<8} | {f[i]:<13} | {g[i]:<18} | {h[i]:<19} |")
+print("--------------------------------------------------------------------------------")
+
+while True :
+   ulang = input("\nIngin input nilai x lagi? Y/N: ")
+
+   if ulang in 'Yy':
+    banyakdata = int(input("Masukkan jumlah data: "))
+    x = [0] * (banyakdata + 1)  
+    f = [0] * (banyakdata + 1)
+    g = [0] * (banyakdata + 1)
+    h = [0] * (banyakdata + 1)
+    for i in range (1, banyakdata + 1):
+        x[i] = float(input(f"Nilai x ke- {i} = "))
+
+        f[i] = fungsiF(x[i])
+        g[i] = fungsiG(x[i])
+        h[i] = fungsiH(x[i])
+    print("\n\n                                Tabel Fungsi\n")
+    print("--------------------------------------------------------------------------------")
+    print("|  No.   |    x     |      f(x)     |         g(x)       |          h(x)       |")
+    print("================================================================================")
+    for i in range (1, banyakdata + 1):
+        print(f"| {i:<6} | {x[i]:<8} | {f[i]:<13} | {g[i]:<18} | {h[i]:<19} |")
+    print("--------------------------------------------------------------------------------")
+
+   elif ulang in 'Nn':
+     break
+
+   
+   
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
