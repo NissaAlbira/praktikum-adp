@@ -20,7 +20,7 @@ int main() {
     cout << "     = 2x^2 - 5x - 4, jika x < 0\n";
     cout << "g(x) = (f(x))^2 - sqrt(f(x))\n";
     cout << "h(x) = f(x) * g(x)\n\n";
-    
+
 
 do{
     cout<<"\nMasukkan Banyak Data : ";
@@ -64,8 +64,8 @@ return 0;
 }
 
 
-2.) Program Bahasa Pyhton
 
+2.) Program Bahasa Pyhton
 import math
 
 print("Nama: Nissa Albira")
@@ -79,62 +79,45 @@ print("g(x) = (f(x))^2 - (akar f(x))")
 print("h(x) = f(x) * g(x)\n")
 while True :
   banyakdata = int(input("Masukkan jumlah data: "))
-  for i in range (1, banyakdata + 1):
-    x = float(input(f"Nilai x ke- {i} = "))
 
-  if (x >= 0) :
-    fungsiF = 3*x**2 + 7*x - 2
-  else :
-    fungsiF = 2*x**2 - 5*x - 4
 
-  
-  fungsiG = fungsiF**2 - math.sqrt(abs(fungsiF)) 
-  fungsiH = fungsiF * fungsiG;
+  x = []
+  f = []
+  g = []
+  h = []
 
- 
 
-  print("\n\n                                Tabel Fungsi\n")
+  for i in range(1, banyakdata + 1):
+    a = float(input(f"Nilai x ke-{i} = "))
+    x.append(a) 
+    if a >= 0:
+        fungsiF = 3 * a**2 + 7 * a - 2
+    else:
+        fungsiF = 2 * a**2 - 5 * a - 4
+    f.append(fungsiF)  
+   
+
+    fungsiG = fungsiF**2 - math.sqrt(abs(fungsiF))
+    g.append(fungsiG) 
+
+    fungsiH = fungsiF * fungsiG
+    h.append(fungsiH)  
+    
+  print("\n                     Tabel Fungsi\n")
   print("--------------------------------------------------------------------------------")
-  print("|  No.   |    x     |      f(x)     |         g(x)       |          h(x)       |")
+  print("|  No.   |    x     |      f(x)     |         g(x)       |          h(x)      |")
   print("================================================================================")
-
-  for i in range (1, banyakdata + 1):
-    print(f"| {i:<6} | {x:<8} | {fungsiF:<13} | {fungsiG:<18} | {fungsiH:<19} |")
-    print("--------------------------------------------------------------------------------")
+  for i in range(banyakdata):
+     print(f"| {i+1:<6}| {x[i]:<8} | {f[i]:<13} | {g[i]:<18} | {h[i]:<19} |")
+  print("--------------------------------------------------------------------------------")
 
   ulang = input("\nIngin input nilai x lagi? Y/N: ").strip().lower()
   if ulang != 'y':
     break 
 
-   
-   
-
-   
-   
-
-
-        
-
-
-
-  
-    
-    
-           
-
-
-
-
-
-
   
 
 
 
 
-
-
-
-
-
-
+  
