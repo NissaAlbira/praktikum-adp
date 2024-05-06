@@ -1,0 +1,64 @@
+print("Nama : Nissa Albira")
+print("NIM  : 2310433017")
+print()
+print("                       Program Nilai Mata Kuliah Mahasiswa                     ")
+
+nilai = [
+    [85, 78, 92, 77],
+    [70, 88, 75, 86],
+    [92, 82, 78, 90],
+    [68, 75, 80, 64],
+    [62, 75, 81, 90]
+]
+nama= ["Laska", "Azizi", "Riani", "Harinka", "Bimo"]
+mata_kuliah = ["Geometri", "ADP", "Aljabar", "Kalkulus II"]
+
+print("                             Tabel Data Mahasiswa                           ")
+print("============================================================================")
+print("|    Nama Mahasiswa    |  Geometri  |     ADP    |   Aljabar  | Kalkulus II|")
+print("============================================================================")
+
+for i in range(5):
+    k = (f"| {nama[i]:<20} |")
+    for j in range(len(mata_kuliah)):
+      k += (f"{nilai[i][j] :< 11} |")
+    print (k)
+print("============================================================================")
+     
+ratarata = []
+for i in range(5):
+  jumlahnilai = 0
+  for j in range(len(mata_kuliah)):
+    jumlahnilai += (nilai[i][j])/4
+  ratarata.append(jumlahnilai)
+
+print("Rata-rata nilai Mahasiswa :")
+for i in range(5):
+  print(f"{nama [i]} : {ratarata[i]}") 
+
+nilaitertinggi = []
+nilaiterendah  = []
+for j in range(len(mata_kuliah)):
+  nilaitertinggi.append(nilai[0][j])
+  nilaiterendah.append(nilai[0][j])
+  for i in range(1, 5):
+    if nilai[i][j] >= nilaitertinggi[j]:
+      nilaitertinggi[j] = nilai[i][j]
+
+    elif nilai[i][j] <= nilaiterendah[j]:
+      nilaiterendah[j] = nilai[i][j]
+
+    else :
+      break
+            
+print("\nNilai Mahasiswa yang tertinggi dan terendah setiap mata kuliah")
+print("---------------------------------------------------------")
+for j in range(len(mata_kuliah)):
+  for i in range(5):
+    if nilai[i][j] == nilaitertinggi[j]:
+      tertinggi = nama [i]
+    if nilai[i][j] == nilaiterendah[j]:
+      terendah = nama[i]
+  print(f"{mata_kuliah[j]}")
+  print(f"Nilai Tertinggi : {tertinggi} = {nilaitertinggi [j]}")
+  print(f"Nilai Terendah  : {terendah} = {nilaiterendah[j]}\n")
