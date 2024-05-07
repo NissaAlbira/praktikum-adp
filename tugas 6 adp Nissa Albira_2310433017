@@ -57,7 +57,7 @@ for j in range(len(mata_kuliah)):
   for i in range(5):
     if nilai[i][j] == nilaitertinggi[j]:
       tertinggi = nama [i]
-    if nilai[i][j] == nilaiterendah[j]:
+    elif nilai[i][j] == nilaiterendah[j]:
       terendah = nama[i]
   print(f"{mata_kuliah[j]}")
   print(f"Nilai Tertinggi : {tertinggi} = {nilaitertinggi [j]}")
