@@ -1,0 +1,61 @@
+print("Nama : Nissa Albira")
+print("NIM  : 2310433017")
+print()
+print("--------------------------------------------")
+print("|          PROGRAM KONVERSI SUHU           |")
+print("--------------------------------------------")
+print()
+
+def konversi(suhu, jenis):
+    if jenis == 'C' :
+        fahrenheit = (9/5 * suhu) + 32
+        reamur = 4/5 * suhu
+        kelvin = suhu + 273
+        return reamur, fahrenheit, kelvin
+    elif jenis == 'F' :
+        celcius = 5/9 * (suhu - 32) 
+        reamur = 4/9 * (suhu - 32)
+        kelvin = (5/9 * (suhu - 32)) + 273
+        return celcius, reamur, kelvin
+    elif jenis == 'R' :
+        celcius = 5/4 * suhu
+        fahrenheit = (9/4 * suhu) + 32
+        kelvin = (5/4 * suhu) + 273
+        return celcius, fahrenheit, kelvin
+    elif jenis == 'K' :
+        celcius = suhu - 273
+        fahrenheit = (9/5 * (suhu - 273)) + 32
+        reamur = 4/5 * (suhu - 237)
+        return celcius, fahrenheit, reamur
+    else:
+        print()
+    
+def ketentuan_suhu(suhu, jenis):
+    batassuhu = {
+        'C': (0, 100),
+        'F': (32, 212),
+        'R': (0, 80),
+        'K': (273, 373)
+    }
+    ubah = {
+        'C': ['Reamur', 'Fahrenheit', 'Kelvin'],
+        'F': ['Celcius', 'Reamur', 'Kelvin'],
+        'R': ['Celcius', 'Fahrenheit', 'Kelvin'],
+        'K': ['Celcius', 'Fahrenheit', 'Reamur']
+    }
+
+    if jenis in batassuhu and batassuhu[jenis][0] <= suhu <= batassuhu[jenis][1]:
+        print(f"\nSuhu {suhu} derajat {jenis} dapat dikonversi menjadi:")
+        print("------------------------------------------------")
+        print("|   Satuan suhu   ||        Derajat suhu       |")
+        print("------------------------------------------------")
+        hasil_konversi = konversi(suhu, jenis)
+        for i in range(len(ubah[jenis])):
+            print(f"| {ubah[jenis][i]:<14}  ||     {hasil_konversi[i]:<18}    |")
+        print("------------------------------------------------")
+    else:
+        print("Suhu yang diinputkan tidak sesuai")
+
+suhu = float(input("Masukkan suhu yang ingin kamu konversikan: "))
+jenis = input("--> Pilih satuan suhu (Celcius, Fahrenheit, Reamur, Kelvin) [C/F/R/K]: ").upper()
+ketentuan_suhu(suhu, jenis)
