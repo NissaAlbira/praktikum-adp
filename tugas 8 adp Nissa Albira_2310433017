@@ -1,0 +1,80 @@
+print("Nama : Nissa Albira")
+print("NIM  : 2310433017\n\n")
+print("             PENYIMPANAN DATA BUKU           ")
+print("---------------------------------------------")
+print()
+
+def menambahkandatabuku(buku):
+    nomorbuku = input("Nomor Buku : ")
+    judul = input("Judul buku: ")
+    penulis = input("Nama penulis: ")
+    penerbit = input("Penerbit: ")
+    tahun = input("Tahun Terbit: ")
+
+    buku.append({
+        "nomor buku": nomorbuku,
+        "judul": judul,
+        "penulis": penulis,
+        "penerbit": penerbit,
+        "tahun": tahun
+    })
+    print("Data buku berhasil ditambahkan!")
+    
+def simpandatabuku(buku):
+    buku = {}
+    with open("data.txt", 'w') as file:
+        for nomorbuku, i in buku.items():
+            file.write(f"{nomorbuku}|{i['judul']}|{i['penulis']}|{i['penerbit']}|{i['tahun']}\n")
+
+def menampilkandatabuku(buku):
+    if not buku :
+        print("\nData buku tidak tersedia\n")
+    else:
+        print("\nData Buku yang Tersimpan:")
+        for i in buku :
+           
+            print(f"Judul       : {i['judul']}")
+            print(f"Penulis     : {i['penulis']}")
+            print(f"Penerbit    : {i['penerbit']}")
+            print(f"Tahun Terbit: {i['tahun']}\n")
+        print()
+
+def hapusdatabuku(buku):
+    nomorbuku = input("Masukkan nomor buku yang ingin dihapus: ")
+    if nomorbuku in buku:
+        del buku[nomorbuku]
+        print("Data buku berhasil dihapus")
+    else:
+        print("Buku yang ingin Anda hapus tidak ditemukan")
+
+def main () :
+    buku = []
+    while True :
+        print("1. Tampilkan Data Buku")
+        print("2. Tambahkan Data Buku")
+        print("3. Hapus Data Buku")
+        print("4. Keluar")
+        pilih = input("Pilihan (1/2/3/4) : ")
+        if pilih == '1':
+            menampilkandatabuku(buku)
+        elif pilih == '2':
+            menambahkandatabuku(buku)
+            simpandatabuku(buku)
+        elif pilih == '3':
+            hapusdatabuku(buku)
+            simpandatabuku(buku)
+        elif pilih == '4':
+            print("Silahkan berkunjung kembali!")
+        else:
+            print("Tidak valid, coba lagi")
+
+if __name__ == "__main__":
+    main()
+
+
+
+       
+    
+
+    
+    
