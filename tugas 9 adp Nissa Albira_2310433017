@@ -1,4 +1,9 @@
 from termcolor import colored, cprint
+cprint("Nama : Nissa Albira", "blue")
+cprint("NIM  : 2310433017\n", "blue")
+cprint("|                  PROGRAM LOGO VISA                  |\n", "white", "on_blue")
+
+
 for i in range(5):
     cprint(" "*55, "green", "on_blue")
 
@@ -10,10 +15,10 @@ cprint(" "*2, "green", "on_blue", end="")
 cprint(" "*7, "green", "on_white", end="")
 cprint(" "*2, "green", "on_blue", end="")
 cprint(" "*7, "green", "on_white", end="")
-cprint(" "*7, "green", "on_blue", end="")
-cprint(" "*7, "green", "on_white", end="")
-cprint(" "*5, "green", "on_blue", end="")
-cprint(" "*6, "green", "on_white")
+cprint(" "*9, "green", "on_blue", end="")
+cprint(" "*5, "green", "on_white", end="")
+cprint(" "*6, "green", "on_blue", end="")
+cprint(" "*5, "green", "on_white")
 
 cprint(" "*4, "white", "on_white", end="")
 cprint(" "*2, "green", "on_blue", end="")
@@ -59,8 +64,8 @@ cprint(" "*7, "green", "on_white", end="")
 cprint(" "*3, "green", "on_blue", end="")
 cprint(" "*7, "green", "on_white", end="")
 cprint(" "*2, "green", "on_blue", end="")
-cprint(" "*11, "green", "on_white", end="")
-cprint(" "*7, "green", "on_blue", end="")
+cprint(" "*9, "green", "on_white", end="")
+cprint(" "*9, "green", "on_blue", end="")
 cprint(" "*5, "green", "on_white", end="")
 cprint(" "*2, "green", "on_blue", end="")
 cprint(" "*6, "green", "on_white", end="")
