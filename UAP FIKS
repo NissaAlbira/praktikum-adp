@@ -1,0 +1,384 @@
+import os
+import time
+import matplotlib.pyplot as plt
+from termcolor import colored, cprint
+os.system('cls')
+
+for i in range(10) :
+    print()
+        
+print("                                                         Selamat datang di SYARA's Healthy Lifestyle Program !")
+cprint(" "*54, "white", "on_blue")
+time.sleep(1)
+os.system('cls')
+for i in range(10) :
+    print()
+print("                                                         Selamat datang di SYARA's Healthy Lifestyle Program !")
+cprint(" "*108, "white", "on_blue")
+time.sleep(1)
+os.system('cls')
+for i in range(10) :
+    print()
+print("                                                         Selamat datang di SYARA's Healthy Lifestyle Program !")
+cprint(" "*162, "white", "on_blue")
+time.sleep(1)
+os.system('cls')
+
+for j in range(3) :
+    for j in range(10) :
+        print()
+    cprint("                                                                            LOADING.", "cyan")
+    time.sleep(1)
+    os.system('cls')
+    for j in range(10) :
+        print()
+    cprint("                                                                            LOADING..", "cyan")
+    time.sleep(1)
+    os.system('cls')
+    for j in range(10) :
+        print()
+    cprint("                                                                            LOADING...", "cyan")
+    time.sleep(1)
+    os.system('cls')
+
+daftar_akun = "akun.txt"
+def username_sama(username):
+    if os.path.isfile(daftar_akun):
+        with open(daftar_akun, 'r') as file:
+            lines = file.readlines()[1:]
+            for line in lines:
+                username_ada = line.strip().split(',')[0]
+                if username_ada == username:
+                    return True
+    return False
+
+def buat_akun(username, password):
+    if not os.path.isfile(daftar_akun):
+        with open(daftar_akun, 'w') as file:
+            file.write("Username,Password,bb,tb,gender,umur\n")
+
+    if username_sama(username):
+        print("Username sudah digunakan. Silakan pilih username lain.")
+        return False
+    
+    print("Silahkan masukkan data awal registrasi anda")
+    jenis_kelamin = input("\nJenis kelamin (pria/wanita): ")
+    umur = int(input("Usia: "))
+    bb = float(input("Berat badan (kg): "))
+    tb = float(input("Tinggi badan (cm): "))
+
+    with open(daftar_akun, 'a') as file:
+        file.write(f"{username},{password},{bb},{tb},{jenis_kelamin},{umur}\n")
+    os.system('cls')
+    print("Akun berhasil dibuat!")
+    return True
+
+def login(username, password):
+    if os.path.isfile(daftar_akun):
+        with open(daftar_akun, 'r') as file:
+            lines = file.readlines()[1:]
+            for line in lines:
+                username_ada, password_ada, bb, tb, jenis_kelamin, umur = line.strip().split(',')
+                os.system('cls')
+                if username_ada == username and password_ada == password:
+                    cprint("                                                                           Login berhasil!", "cyan")
+                    return True, bb, tb, jenis_kelamin, umur
+                
+    print("Username atau password salah. Silakan coba lagi.")
+    return False, None, None, None, None
+
+def menyimpan_data(username):
+    file_data= f"{username}_data_kesehatan.txt"
+    tgl = input("Masukkan tanggal (DD-MM-YYYY): ")
+    makan = int(input("Jumlah makan dalam sehari: "))
+    K = input("Apakah dalam seporsi makan anda ada kandungan karbohidrat ? (ada/tidak) : ")
+    P = input("Apakah dalam seporsi makan anda ada kandungan protein ? (ada/tidak) : ")
+    S = input("Apakah dalam seporsi makan anda ada kandungan serat ? (ada/tidak) : ")
+    minum = int(input("Jumlah minum dalam sehari (gelas): "))
+    tidur = float(input("Lama waktu tidur (jam): "))
+    olahraga = float(input("Intensitas olahraga (menit): "))
+
+    with open (file_data, 'a') as f :
+        f.write(f"{tgl},{makan},{K},{P},{S},{minum},{tidur},{olahraga}\n")
+    print(f'data tanggal {tgl} telah ditambahkan ke dalam data kesehatan')
+
+def menghapus_harian(username, tgl) :
+    file_data= f"{username}_data_kesehatan.txt"
+    if os.path.isfile(file_data):
+        with open (file_data,'r') as f :
+            lines=f.readlines()
+        with open (file_data,'w') as f :
+            hapus=False
+            for i in lines :
+                if i.split(',')[0]!= tgl :
+                    f.write(i)
+                else :
+                    hapus=True
+            if hapus :
+                print(f' Data tanggal {tgl} sudah dihapus')
+            else :
+                print(f' Data tanggal {tgl} tidak ditemukan dalam data kesehatan')
+    else :
+        print("Belum ada data Kesehatan yang dicatat.")
+
+def menampilkan(username):
+    cprint("                                                                Berikut data kesehatan Anda                                                                      ", "white", "on_red")
+    file_data=f"{username}_data_kesehatan.txt"
+    if os.path.isfile(file_data):
+        data=[] 
+        with open (file_data,'r') as f :
+            lines=f.readlines()
+            for line in lines:
+                data.append(line.strip().split(','))
+        print("-"*135)
+        cprint(f"|{'Tanggal':<14}| {'Makan':<14}| {'Karbohidrat':<14}| {'Protein':<14}| {'Serat':<14}| {'Minum (gelas)':<14}| {'Lama waktu tidur':<14}| {'Intensitas Olahraga':<14}| ", "blue")
+        print("-"*135)
+        for i in data :
+            for item in i :
+                print(f"|{item:<14}", end= "|")
+            print()
+        print("-"*135)
+    else :
+        print("Belum ada data Kesehatan yang dicatat.")
+
+def analisis_kesehatan(username,bb,tb,jenis_kelamin,umur):
+    file_data = f"{username}_data_kesehatan.txt"
+    if not os.path.isfile(file_data):
+        print("Belum ada data kesehatan yang dicatat.")
+        return
+
+    tanggal, makanan, Ka, Pr, Se, minuman, wtidur, Lolahraga= [], [], [], [], [], [], [], []
+    with open(file_data, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            tgl, makan, K, P, S, minum, tidur, olahraga = line.strip().split(',')
+            tanggal.append(tgl)
+            makanan.append(int(makan))
+            Ka.append(K)
+            Pr.append(P)
+            Se.append(S)
+            minuman.append(int(minum))
+            wtidur.append(float(tidur))
+            Lolahraga.append(float(olahraga))
+
+    rata_rata_makan = sum(makanan) / len(makanan) if makanan else 0
+    rata_rata_minum = sum(minuman) / len(minuman) if minuman else 0
+    rata_rata_tidur = sum(wtidur) / len(wtidur) if wtidur else 0
+    rata_rata_olahraga = sum(Lolahraga) / len(Lolahraga) if Lolahraga else 0
+
+    bb=float(bb)
+    tb=float(tb)/100
+    bmi=bb/(tb ** 2)
+
+    if bmi < 18.5:
+        kategori_bmi = "Kurus"
+    elif 18.5 <= bmi < 24.9:
+        kategori_bmi = "Normal"
+    elif 25 <= bmi < 29.9:
+        kategori_bmi = "Overweight"
+    else:
+        kategori_bmi = "Obesitas"
+    
+    umur=int(umur)
+    if jenis_kelamin.lower() == 'pria':
+        bmr = float(88.362 + (13.397 * bb) + (4.799 * tb) - (5.677 * umur))
+    elif jenis_kelamin.lower() == 'wanita' :
+        bmr =float( 447.593 + (9.247 * bb) + (3.098 * tb) - (4.330 * umur))
+    else :
+        print("Data tidak valid.")
+
+    if rata_rata_olahraga <= 8:
+        tingkat_aktivitas = "sedentari"
+    elif rata_rata_olahraga <= 30:
+        tingkat_aktivitas = "ringan"
+    elif rata_rata_olahraga > 30 and rata_rata_olahraga <= 60:
+        tingkat_aktivitas = "sedang"
+    elif rata_rata_olahraga > 60 and rata_rata_olahraga <= 90:
+        tingkat_aktivitas = "aktif"
+    else:
+        tingkat_aktivitas = "sangat aktif"
+
+    faktor_aktivitas = {
+            "sedentari": 1.2,
+            "ringan": 1.375,
+            "sedang": 1.55,
+            "aktif": 1.725,
+            "sangat aktif": 1.9
+        }
+    cprint("                                                     Berikut Analisis Kesehatan dan Saran Kesehatan                                                               ", "white", "on_red")
+    print("BMR anda adalah ",bmr)
+    print("Kategori BMI anda adalah", kategori_bmi)
+    kalori=bmr * faktor_aktivitas.get(tingkat_aktivitas.lower(), 1.2)
+    print("Kalori yang anda butuhkan dalam sehari adalah " ,kalori)
+    print()
+    print("Saran Kesehatan:\n")
+    if bmi < 18.5:
+        print("- Makan lebih banyak makanan berkalori tinggi dan seimbang.\n")
+    elif 25 <= bmi < 29.9:
+        print("- Kurangi makanan tinggi kalori, perbanyak sayuran dan buah.\n")
+    elif bmi >= 30:
+        print("- Konsultasi dengan dokter atau ahli gizi untuk diet yang tepat.\n")
+    print(f"- Anda memerlukan sekitar {kalori:.2f} kalori per hari berdasarkan tingkat aktivitas Anda.\n")
+    
+    if rata_rata_minum < 8 :
+        print("- Anda harus memperhatikan asupan cairan anda, Asupan cairan harian anda masih kurang\n")
+    elif rata_rata_minum >= 8 :
+        print("- Asupan cairan anda sudah cukup, pertahankan kebiasaan anda\n")
+    print(f"- Asupan cairan disarankan 8 gelas air mineral dalam sehari\n")
+
+    if rata_rata_makan < 3 :
+        print("- Perbaiki pola makan anda. Anda harus menjaga energi dan keseimbangan nutrisi anda\n")
+    elif rata_rata_makan == 3 :
+        print("- Pola makan anda sudah baik, pertahankan kebiasaan anda\n")
+    elif rata_rata_makan > 3 :
+        print("- Asupan makanan anda berlebih, kurangi asupan makanan anda untuk mengurangi resiko obesitas\n")
+    print( "- Dalam sehari disarankan makan 3 kali sehari, yaitu sarapan, makan siang, dan makan malam")
+
+    if K == 'ada' :
+        if P == 'ada' :
+            if S == 'ada' :
+                print( "-Porsi makan anda sudah bagus. Pertahankan porsi makan lengkap anda\n")
+            else :
+                print( "-Perbaiki nutrisi yang anda konsumsi ! Anda kekurangan serat, serat penting untuk proses metabolisme tubuh.\n")
+        else :
+            if S == 'ada' :
+                print( "-Perbaiki nutrisi yang anda konsumsi ! Anda kekurangan protein, protein sangat dibutuhkan untuk fungsi biologis.\n")
+            else :
+                print("-Perbaiki nutrisi yang anda konsumsi ! Anda kekurangan protein dan serat, protein sangat dibutuhkan untuk fungsi biologis dan serat dibutuhkan untuk proses metabolisme anda.\n")
+    else :
+        if P == 'ada' :
+            if S == 'ada' :
+                print( "-Jangan lupakan karbohidrat ! karbohidrat sangat penting untuk energi anda.\n")
+            else :
+               print( "-Jangan lupakan karbohidrat dan serat ! karbohidrat sangat penting untuk energi anda dan serat penting untuk proses metabolisme tubuh.\n" )
+        else :
+            if S == 'ada' :
+                print( "-Jangan lupakan karbohidrat dan protein ! karbohidrat sangat penting untuk energi anda dan protein sangat penting untuk fungsi biologis.\n")
+            else :
+                print( "-Porsi makan anda sangat tidak baik untuk nutrisi tubuh ! perbaiki nutrisi makan anda dengan mengonsumsi porsi seimbang.\n" )
+    
+
+    if rata_rata_tidur < 8 :
+        print( "-Anda harus menambah waktu istirahat anda\n")
+    elif rata_rata_tidur == 8 :
+        print( "-Waktu istirahat anda sudah cukup, pertahankan pola istirahat anda")
+    else : 
+        print( "-Waktu istirahat anda berlebih, perbanyak aktivitas produktif")
+    print( "-Anda memerlukan waktu istirahat selama 8 jam dalam sehari\n")
+
+def grafik(username):
+    file_data = f"{username}_data_kesehatan.txt"
+    if not os.path.isfile(file_data):
+        print("Belum ada data kesehatan yang dicatat.")
+        return
+    
+    tanggal, makanan, Ka, Pr, Se, minuman, wtidur, Lolahraga= [], [], [], [], [], [], [], []
+    with open(file_data, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            tgl, makan, K, P, S, minum, tidur, olahraga = line.strip().split(',')
+            tanggal.append(tgl)
+            makanan.append(int(makan))
+            Ka.append(K)
+            Pr.append(P)
+            Se.append(S)
+            minuman.append(int(minum))
+            wtidur.append(float(tidur))
+            Lolahraga.append(float(olahraga))
+
+    plt.figure(figsize=(10, 6))
+
+    plt.plot(tanggal, makanan, label='Makan dalam sehari')
+    plt.plot(tanggal, minuman, label='Minum dalam sehari')
+    plt.plot(tanggal, wtidur, label='Waktu tidur (jam)')
+    plt.plot(tanggal, Lolahraga, label='Olahraga (menit)')
+
+    plt.xlabel('Tanggal')
+    plt.ylabel('Jumlah/Intensitas')
+    plt.title('Grafik Analisis Kesehatan Pengguna')
+    plt.legend()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
+    Ka_bin = [1 if item == 'ada' else 0 for item in Ka]
+    Pr_bin = [1 if item == 'ada' else 0 for item in Pr]
+    Se_bin = [1 if item == 'ada' else 0 for item in Se]
+
+    plt.figure(figsize=(10, 6))
+
+    plt.bar(tanggal, Ka_bin, width=0.1, align='edge', label='Karbohidrat')
+    plt.bar(tanggal, Pr_bin, width=0.1, align='center', label='Protein')
+    plt.bar(tanggal, Se_bin, width=-0.1, align='edge', label='Serat')
+
+    plt.xlabel('Tanggal')
+    plt.ylabel('Kehadiran Nutrisi')
+    plt.title('Grafik Konsumsi Karbohidrat, Protein, dan Serat harian pengguna')
+    plt.legend()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
+def menu(username,bb,tb,jenis_kelamin,umur):
+    login = True
+    while login :
+        
+        print("\n\nMenu SYARA's healthy Lifestyle")
+        print("1. Menambah data harian")
+        print("2. Menghapus data harian")
+        print("3. Tampilkan riwayat data kesehatan ")
+        print("4. Analisis kesehatan dan saran kesehatan")
+        print("5. Tampilkan Grafik Kesehatan keseluruhan")
+        print("6. Logout")
+        pilihan=input("Pilih Menu : ")
+        os.system('cls')
+
+        if pilihan == '1' :
+            menyimpan_data(username)
+        elif pilihan == '2' :
+            tgl = input ("Masukkan tanggal, data yang ingin dihapus dengan format (DD-MM-YYYY) : ")
+            menghapus_harian(username, tgl)
+        elif pilihan == '3' :
+            menampilkan(username)
+        elif pilihan == '4' :
+            analisis_kesehatan(username,bb,tb,jenis_kelamin,umur)
+        elif pilihan == '5' :
+            grafik(username)
+        elif pilihan == '6' :
+            print("Anda berhasil logout.")
+            login = False
+        else :
+            print ('Pilihan tidak valid. Ulang masukkan Piliihan')
+
+def regis_akun():
+    program_jalan=True
+    while program_jalan:
+        print("\n                                                                       1. Login")
+        print("                                                                       2. Buat Akun")
+        print("                                                                       3. Keluar Aplikasi")
+        akun = input("                                                                        Pilih (1/2/3): ")
+        os.system('cls')
+        if akun == '1':
+            username = input("                                                                    Masukkan username: ")
+            password = input("                                                                    Masukkan password: ")
+            login_berhasil, bb, tb, jenis_kelamin,umur=login(username, password)
+            if login_berhasil :
+                menu(username, bb, tb, jenis_kelamin, umur)
+        elif akun == '2':
+            username = input("                                                                    Masukkan username: ")
+            password = input("                                                                    Masukkan password: ")
+            os.system('cls')
+            if buat_akun(username, password):
+                print("Silakan login dengan akun baru Anda.")
+        elif akun == '3' :
+            os.system('cls')
+            for i in range(10) :
+                print()
+            cprint("                            Terimakasih telah menggunakan SYARA's Healthy Lifestyle Program, jangan lupa jalankan pola hidup sehat!", "yellow")
+            time.sleep(10)
+            os.system('cls')
+            program_jalan = False
+        else:
+            print("Pilihan tidak valid. Silakan coba lagi.")
+if __name__ == "__main__":
+    regis_akun()
