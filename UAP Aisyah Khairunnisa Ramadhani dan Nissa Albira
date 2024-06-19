@@ -122,7 +122,7 @@ def menghapus_harian(username, tgl) :
         print("Belum ada data Kesehatan yang dicatat.")
 
 def menampilkan(username):
-    cprint("                                                                Berikut data kesehatan Anda                                                                      ", "white", "on_red")
+    cprint("                                            Berikut data kesehatan Anda                                                     ", "white", "on_red")
     file_data=f"{username}_data_kesehatan.txt"
     if os.path.isfile(file_data):
         data=[] 
@@ -205,7 +205,7 @@ def analisis_kesehatan(username,bb,tb,jenis_kelamin,umur):
             "aktif": 1.725,
             "sangat aktif": 1.9
         }
-    cprint("                                                     Berikut Analisis Kesehatan dan Saran Kesehatan                                                               ", "white", "on_red")
+    cprint("                                                          Berikut Analisis Kesehatan dan Saran Kesehatan                                                          ", "white", "on_red")
     print("BMR anda adalah ",bmr)
     print("Kategori BMI anda adalah", kategori_bmi)
     kalori=bmr * faktor_aktivitas.get(tingkat_aktivitas.lower(), 1.2)
